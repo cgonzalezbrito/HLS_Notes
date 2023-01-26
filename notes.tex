@@ -1,0 +1,33 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\renewcommand\lstlistingname{Quelltext} % Change language of section name
+
+\definecolor{ltgray}{rgb}{0.97,0.97,0.97}
+
+
+\title{My HLS Notes}
+\date{2023-01-26}
+\author{cgonzalezbrito}
+
+\begin{document}
+  \pagenumbering{gobble}
+  \maketitle
+  \newpage
+  \pagenumbering{arabic}
+  \section{Introduction}
+  
+  \iffalse TODO: \fi
+
+  \newpage
+  \section{Definitions}
+
+  \textbf{HLS:} High-Level Synthesis\footnote{\label{HLS}https://en.wikipedia.org/wiki/High-level_synthesis}. Automated design process that takes an abstract behavioral specification of a digital system and finds a register-transfer level structure that realizes the given behavior.\\
+  \textbf{RTL:} Registrer Transfer Level \footnote{\label{RTL}https://en.wikipedia.org/wiki/Register-transfer_level}. Design abstraction which models a synchronous digital circuit in terms of the flow of digital signals (data) between hardware registers, and the logical operations performed on those signals.\\
+  \textbf{PL:} Programable Logic.
+
+\end{document}
