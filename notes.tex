@@ -6,6 +6,7 @@
 \usepackage[dvipsnames]{xcolor}
 
 \renewcommand\lstlistingname{Quelltext} % Change language of section name
+\newcommand\tab[1][1cm]{\hspace*{#1}}
 
 \definecolor{ltgray}{rgb}{0.97,0.97,0.97}
 
@@ -23,7 +24,6 @@
   
   \iffalse TODO: \fi
 
-  \newpage
   \section{Definitions}
 
   \textbf{HLS:} High-Level Synthesis\footnote{\label{HLS}https://en.wikipedia.org/wiki/High-level_synthesis}. Automated design process that takes an abstract behavioral specification of a digital system and finds a register-transfer level structure that realizes the given behavior.\\
@@ -31,8 +31,14 @@
   \textbf{PL:} Programable Logic.\\
   \textbf{Throughput:} Number of specific actions executed or results obtained per unit of time.\\
   \textbf{Performance:} Higher throughput with lower power consumption.\\
+  \textbf{Streaming paradigm:} It represents an unbounded, countinuosly updating data set.\\
+  \tab \textbf{FIFO Buffers:} First Inputo First Output. Issue: The varying rates of production/cosuption may cause a deadlock.\\
+  \tab \textbf{PIPO Buffers:} Double buffer that can overlap the I/O operation with the data processing operation. The tool automatically matches the rate of production and the rate of consumption.\\
+  \textbf{Piplene paradigm:} A process is divided into sequential phases. While the resources of a phase are used to process a first data, the resources of the previous phase process a second data, and so on.
+  \tab \textbf{Iteration latency:} The time taken to obtain the first result.
+  \tab \textbf{Initiation Interval (II):}  Time taken to obtain the second and subsequent results from the previous one.
 
-  \section{Software Utilities}
+    \section{Software Utilities}
 
   \textbf{Vitis HLS:} Vivado Design Suite + Vitis Core Development Kit\\
   \textbf{Vivado Design Suite:} For sythesis, place and route.\\
