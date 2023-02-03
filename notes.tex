@@ -4,6 +4,7 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
 
 \renewcommand\lstlistingname{Quelltext} % Change language of section name
 \newcommand\tab[1][1cm]{\hspace*{#1}}
@@ -26,17 +27,27 @@
 
   \section{Definitions}
 
-  \textbf{HLS:} High-Level Synthesis\footnote{\label{HLS}https://en.wikipedia.org/wiki/High-level_synthesis}. Automated design process that takes an abstract behavioral specification of a digital system and finds a register-transfer level structure that realizes the given behavior.\\
-  \textbf{RTL:} Registrer Transfer Level \footnote{\label{RTL}https://en.wikipedia.org/wiki/Register-transfer_level}. Design abstraction which models a synchronous digital circuit in terms of the flow of digital signals (data) between hardware registers, and the logical operations performed on those signals.\\
+  \textbf{HLS:} High-Level Synthesis\footnote{\label{HLS}\url{https://en.wikipedia.org/wiki/High-level_synthesis}}. Automated design process that takes an abstract behavioral specification of a digital system and finds a register-transfer level structure that realizes the given behavior.\\
+  \textbf{RTL:} Registrer Transfer Level\footnote{\label{RTL}\url{https://en.wikipedia.org/wiki/Register-transfer_level}}. Design abstraction which models a synchronous digital circuit in terms of the flow of digital signals (data) between hardware registers, and the logical operations performed on those signals.\\
   \textbf{PL:} Programable Logic.\\
   \textbf{Throughput:} Number of specific actions executed or results obtained per unit of time.\\
   \textbf{Performance:} Higher throughput with lower power consumption.\\
-  \textbf{Streaming paradigm:} It represents an unbounded, countinuosly updating data set.\\
-  \tab \textbf{FIFO Buffers:} First Inputo First Output. Issue: The varying rates of production/cosuption may cause a deadlock.\\
-  \tab \textbf{PIPO Buffers:} Double buffer that can overlap the I/O operation with the data processing operation. The tool automatically matches the rate of production and the rate of consumption.\\
-  \textbf{Piplene paradigm:} A process is divided into sequential phases. While the resources of a phase are used to process a first data, the resources of the previous phase process a second data, and so on.
-  \tab \textbf{Iteration latency:} The time taken to obtain the first result.
-  \tab \textbf{Initiation Interval (II):}  Time taken to obtain the second and subsequent results from the previous one.
+
+  \subsection{VITIS TERMINOLOGY}
+
+  \textbf{Vitis core development kit:} Provides a framework for designing, building, and debugging heterogeneous applications using standard programming languages for both software and hardware components.\\
+  \textbf{Vivado Design Suite:} An RTL language design, synthesis, and implementation tool that enables hardware designers to create and export hardware designs (.xsa).\\
+  \textbf{Xilinx Support Archive (.xsa):} Is a hardware container exported from the Vivado Design Suite for multiple uses, including in a fixed or extensible platform.\\
+  \textbf{Fixed Platform (.xpfm):} Includes a completed hardware design (.xsa) and supporting software files defining the operating system, libraries, and boot files. In this context, "fixed" simply means that the hardware design is complete.\\
+  \textbf{Extensible Platform (.xpfm):} The target platform of the Vitis heterogeneous system design flow. In this context, the "extensible" design can be further customized by adding programmable content such as PL kernels and AI Engine graph applications to the platform to build the embedded system. Extensible Platform can also be used to develop software like the fixed platform.\\
+  \textbf{PL kernel (.xo):} A hardware function that can be added to the PL region of an extensible platform to define custom hardware. PL kernels can be defined using C++ code in Vitis HLS, or using RTL code and the IP packager feature of the Vivado Design Suite.\\
+  \textbf{Vitis HLS:} A high-level synthesis tool that translates C/C++ functions into RTL for implementation in the programmable logic (PL) region of a device. Vitis HLS generates a compiled object (.xo) file that can be imported into the Vitis environment.\\
+  \textbf{Vitis Compiler:} The v++ command used to compile PL kernels (.xo) from C++ code, and to link multiple PL kernels with hardware platforms and AI Engine graph applications to build the device binary.
+  \textbf{PS Application:} A user-defined software application to be run on an Arm processor in a Xilinx MPSoc or ACAP device, that can control and interact with PL kernels and AI Engine graph.
+  \textbf{Xilinx runtime library (XRT):} Provides an API and drivers to let your software application control, transfer data to, and read the status of the PL kernels and AI Engine graph application in the hardware design.
+  \textbf{AI Engine kernel and graph applications:} Compiled by the Vitis \textit{aiecompiler} and linked into the embedded system with \textit{v++}. Kernels are functions that run on Versal AI Engines and form the fundamental building blocks of a data flow graph application. The AI Engine graph application is an adaptive dataflow graph with deterministic behavior.
+  \textbf{\textit{aiecompiler/aiesimulator:}} Vitis tools for the compilation and simulation of AI Engine graph applications.
+  \textbf{Device Binary (.xclbin) file:} Contains the programmable device image (PDI) for Versal ACAP or the bitstream for Zynq MPSoC, and metadata needed to control the hardware design.
 
     \section{Software Utilities}
 
@@ -44,6 +55,15 @@
   \textbf{Vivado Design Suite:} For sythesis, place and route.\\
   \textbf{Vitis Core Development Kit:} For heteregeneous system-level design and application acceleration.\\
 
+  \section{Three Paradigms for Programming FPGAs}
+
+  \textbf{Producer-Consumer Paradigm}
+  \textbf{Streaming paradigm:} It represents an unbounded, countinuosly updating data set.\\
+  \tab \textbf{FIFO Buffers:} First Inputo First Output. Issue: The varying rates of production/cosuption may cause a deadlock.\\
+  \tab \textbf{PIPO Buffers:} Double buffer that can overlap the I/O operation with the data processing operation. The tool automatically matches the rate of production and the rate of consumption.\\
+  \textbf{Piplene paradigm:} A process is divided into sequential phases. While the resources of a phase are used to process a first data, the resources of the previous phase process a second data, and so on.
+  \tab \textbf{Iteration latency:} The time taken to obtain the first result.
+  \tab \textbf{Initiation Interval (II):}  Time taken to obtain the second and subsequent results from the previous one.
 
 
 \end{document}
